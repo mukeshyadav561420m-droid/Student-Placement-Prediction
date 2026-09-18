@@ -3,6 +3,13 @@ import sys
 import webbrowser
 import threading
 import time
+import subprocess
+
+# Ensure running within project .venv if available
+base_dir = os.path.dirname(os.path.abspath(__file__))
+venv_python = os.path.join(base_dir, ".venv", "Scripts", "python.exe")
+if os.path.exists(venv_python) and os.path.normpath(sys.executable).lower() != os.path.normpath(venv_python).lower():
+    sys.exit(subprocess.call([venv_python, "-u"] + sys.argv))
 
 def open_browser():
     time.sleep(2.0)
